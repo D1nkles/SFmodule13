@@ -2,7 +2,7 @@
 
 class Program
 {
-    static void WriteDictionary(Dictionary<string, Contact> phoneBook) 
+    static void WriteDictionary(SortedDictionary<string, Contact> phoneBook)
     {
         foreach (var contact in phoneBook)
         {
@@ -10,16 +10,16 @@ class Program
         }
         Console.WriteLine();
     }
-    static void Main(string[] args) 
+    static void Main(string[] args)
     {
-        Dictionary<string, Contact> phoneBook = new Dictionary<string, Contact>()
+        SortedDictionary<string, Contact> phoneBook = new SortedDictionary<string, Contact>()
         {
             ["Сергей"] = new Contact(6346263142, "gagwe@mail.com"),
             ["Андрей"] = new Contact(9768457634, "kuyk@mail.com")
         };
 
         WriteDictionary(phoneBook);
-
+        
         Stopwatch sw = Stopwatch.StartNew();
         phoneBook.TryAdd("Никита", new Contact(761421253, "myghopewjp@mail.com"));
         sw.Stop();
@@ -28,7 +28,7 @@ class Program
 
         if (phoneBook.TryGetValue("Никита", out Contact contactToChange))
             contactToChange.PhoneNumber = 511266462;
-       
+
         WriteDictionary(phoneBook);
     }
 }
