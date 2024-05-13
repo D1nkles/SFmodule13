@@ -3,24 +3,31 @@
     static void Main(string[] args) 
     {
         bool hasNum;
-        string sentence = "Подсчитайте, сколько уникальных символов в этом предложении, используя HashSet<T>, учитывая знаки препинания, но не учитывая пробелы в начале и в конце предложения.";
-        char[] arrSentence = sentence.ToCharArray();
-
         char[] nums = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
         char[] marks = { ' ', ',', '.', '!', '?', ';', ':', '-' };
 
-        HashSet<char> set = new HashSet<char>(arrSentence);
-        
-        hasNum = set.Overlaps(nums);
-        if (hasNum)
-            Console.WriteLine("В колллекции есть цифры.");
-        else
-            Console.WriteLine("В коллекции нет цифр.");
+        while (true) 
+        {
+            Console.WriteLine("Введите любой текст: ");
+            string sentence = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(sentence)) 
+            { 
+                char[] arrSentence = sentence.ToCharArray();
+                HashSet<char> set = new HashSet<char>(arrSentence);
 
-        Console.WriteLine($"Всего уникальных символов в предложении {set.Count}");
+                hasNum = set.Overlaps(nums);
+                if (hasNum)
+                    Console.WriteLine("В колллекции есть цифры.");
+                else
+                    Console.WriteLine("В коллекции нет цифр.");
 
-        set.ExceptWith(marks);
-        Console.WriteLine($"Уникальных символов без знаков препинания: {set.Count}");
+                Console.WriteLine($"Всего уникальных символов в предложении {set.Count}");
+
+                set.ExceptWith(marks);
+                Console.WriteLine($"Уникальных символов без знаков препинания: {set.Count}");
+            }
+            else  
+                Console.WriteLine("Вы ввели пустую строку"); 
+        }
     }
 }
